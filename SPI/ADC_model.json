@@ -1,0 +1,29 @@
+{ signal: [
+  { name: 'iclk', wave: 'p.......|..|.....|.......|.....', node: 'a...b'},
+  {node: 'A...B'},
+  { name: 'SS', wave: '10......|..|.......|...1.|..0..',  node: '.c.....................i....j' },
+  {node: '.C.D................H..I....J'},
+  { name: 'CLK', wave: '1..0.1.0|1.|..0.1.0|1....|....0',  node: '...d...e.f....g.....h.........k' },
+  {node: '...D...E'},
+  { name: 'SDO', wave: '=..=...=|..|..=...=|.....|....=',  node: '..........' },
+  {node: '...K.....F....G.....H..I....J'},
+],
+edge: ['a-A', 'b-B', 'A<->B 4xICLK_PERIOD',
+  	   'c~>d SS_SET',
+  	   'd-K', 'e-E', 'D<->E CLK_PERIOD',
+  	   'f-F', 'g-G', 'F<->G TBP',
+       'h~>i SS_HOLD',
+       'i-I', 'j-J', 'I<->J TBM',
+       'h-H', 'K<->F spi packet (n bits)',
+       'G<->H spi packet (n bits)',
+	   'j~>k SS_SET'],
+
+foot: {text:
+   ['tspan',
+   ['tspan', {'font-weight':'bold'}, 'TBP'],
+   ['tspan', ' - TIME_BETWEEN_PACKETS; '],
+   ['tspan', {'font-weight':'bold'}, 'TBM'],
+   ['tspan', ' - TIME_BETWEEN_MESSAGES'],
+]
+}
+}
